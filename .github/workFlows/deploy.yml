@@ -1,0 +1,29 @@
+name: Deploy para Hostinger via FTP
+
+on:
+  push:
+    branches:
+      - main  # ou "master", dependendo do nome da sua branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v2
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Build do projeto React
+        run: npm run build
+
+      - name: Deploy via FTP para Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./build
+          server-dir: public_html/  # ajuste se seu domínio estiver em uma subpasta
