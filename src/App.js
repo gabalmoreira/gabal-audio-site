@@ -3,8 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import moment from 'moment';
-import logo from './images/logo-gabal.png'; // Importe sua imagem de logo (ajuste o caminho)
-import fotoGabal from './images/foto-gabal.jpg'; // Importe sua foto (ajuste o caminho)
 import DatePicker from 'react-datepicker';
 import { parse, isValid, format } from 'date-fns';
 import { FaWhatsapp } from 'react-icons/fa'; // Importe o ícone do WhatsApp do React Icons
@@ -36,9 +34,7 @@ function EstoqueEquipamentos() {
 
 function App() {
 
-  useEffect(() => {
-    document.body.classList.add('dark-mode');
-  }, []);
+
   const [nome, setNome] = useState("");
   const [data, setData] = useState("");
   const nomeRef = useRef(null);
@@ -485,7 +481,7 @@ function App() {
     telefone: "(62) 99246-1404",
     email: "comercial@gabal.com.br",
     mensagemBotao: "Falar com nossa equipe",
-    imagem: fotoGabal // Adicione o caminho da sua foto aqui
+    imagem: process.env.PUBLIC_URL + "/images/foto-gabal.jpg"
   };
 
   const calcularTotal = () => {
@@ -773,21 +769,22 @@ function App() {
   };
 
   return (
-    <div className={`main-container ${mainContainerClass}`} style={{ maxWidth: 1200, margin: "40px auto", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", padding: 5 }}>
+    <div className={`main-container ${mainContainerClass}`} style={{ maxWidth: 1200, margin: "3px auto", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", padding: "6px" }}>
       <header className="header-gabal">
         <div className="container-header">
-          <img src="/images/logo-gabal.png" alt="Logo Gabal" className="logo-gabal" />
+          <img src={process.env.PUBLIC_URL + "/images/logo-gabal.png"} alt="Logo Gabal" className="logo-gabal" />
 
           <nav className="menu-gabal">
-            <a href="#home" className="active">Home</a>
-            <a href="#atendimento">Área de Atendimento</a>
-            <a href="#avaliacoes">Avaliações</a>
+            <a href="https://www.gabal.com.br" className="active" target="_blank" rel="noopener noreferrer">Home</a>
             <a href="https://orcamentos.gabal.com.br" target="_blank" rel="noopener noreferrer">Orçamentos</a>
+            <a href="https://www.gabal.com.br/area-de-atendimento-aluguel-de-som-goiania" target="_blank" rel="noopener noreferrer">Área de Atendimento</a>
+            <a href="https://www.gabal.com.br/avaliacoes-equipamentos-de-som-para-eventos" target="_blank" rel="noopener noreferrer">Avaliações</a>
+            <a href="https://www.gabal.com.br/nossos-equipamentos" target="_blank" rel="noopener noreferrer">Nossos Equipamentos</a>
           </nav>
 
           <div className="social-buttons">
             <a href="https://instagram.com/gabal.audio" target="_blank" rel="noopener noreferrer" className="icon-instagram">
-              <i className="fab fa-instagram" style={{ fontSize: "45px", marginRight: "30px" }}></i>
+              <i className="fab fa-instagram" style={{ fontSize: "42px", marginRight: "50px" }}></i>
 
             </a>
             <a href="https://wa.me/5562992461404" target="_blank" rel="noopener noreferrer" className="botao-whatsapp">
@@ -1013,7 +1010,7 @@ function App() {
                 <button
                   onClick={enviarWhatsapp}
                   style={{
-                    backgroundColor: '#52c41a',
+                    backgroundColor: '#0FC144',
                     color: 'white',
                     width: '100%',
                     padding: '12px',
@@ -1037,7 +1034,7 @@ function App() {
       {/* Sua Logo Aqui */}
 
 
-      <h1 style={{ textAlign: "center", fontSize: 32, marginBottom: 30, color: "#333" }}>Solicite seu orçamento - Equipamentos para Locação</h1>
+      <h1 style={{ textAlign: "center", fontSize: 32, marginBottom: 30, marginTop: 20, color: "#333" }}>Orçamento</h1>
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: 15, marginBottom: 20, justifyContet: "center", width: '100%' }}>
         <div style={{ flex: 1, minWidth: '200px' }}>
@@ -1478,7 +1475,7 @@ function App() {
               onClick={enviarWhatsapp}
               style={{
                 width: '100%',
-                backgroundColor: '#25D366',
+                backgroundColor: '#0FC144',
                 color: 'white',
                 padding: '15px',
                 fontSize: '16px',
@@ -1564,7 +1561,7 @@ function App() {
         <h2 style={{ fontSize: 22, color: '#555', marginBottom: 10 }}>Ainda está com dúvidas?</h2>
         <h3 style={{ fontSize: 18, color: '#777', marginBottom: 10 }}>{contatoGabal.nome}</h3>
         {/* Sua foto aqui */}
-        {contatoGabal.imagem && <img src={contatoGabal.imagem} alt={`Contato com ${contatoGabal.nome}`} style={{ width: 150, height: 150, borderRadius: '50%', objectFit: 'cover', marginBottom: 15 }} />}
+        <img src={process.env.PUBLIC_URL + "/images/foto-gabal.jpg"} alt="Foto do Gabriel" style={{ width: 150, height: 150, borderRadius: '50%', objectFit: 'cover', marginBottom: 15 }} />
         <p style={{ color: '#777', marginBottom: 10 }}>
           <strong style={{ fontWeight: 'bold', color: '#555', }}>Vamos conversar?</strong><br />
           Tel: <a href={`tel:${contatoGabal.telefone}`} style={{ color: '#25D366', textDecoration: 'none' }}>{contatoGabal.telefone}</a><br />
@@ -1653,7 +1650,7 @@ function App() {
               <div
                 style={{
                   border: '4px solid #f3f3f3',
-                  borderTop: '4px solid #25D366', // Cor verde do WhatsApp
+                  borderTop: '4px solid #0FC144', // Cor verde do WhatsApp
                   borderRadius: '50%',
                   width: '40px',
                   height: '40px',
@@ -1820,7 +1817,7 @@ function App() {
           position: 'fixed',
           bottom: '20px',
           right: '20px',
-          backgroundColor: '#25D366',
+          backgroundColor: '#0FC144',
           color: '#fff',
           borderRadius: '50%',
           width: '60px',
