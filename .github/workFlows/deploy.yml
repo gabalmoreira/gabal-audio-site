@@ -3,7 +3,7 @@ name: Deploy para Hostinger via FTP
 on:
   push:
     branches:
-      - main  # ou "master", dependendo do nome da sua branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -16,8 +16,11 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Build do projeto React
-        run: CI=false npm run build
+      - name: Build do projeto React (CI desativado)
+        run: CI='' npm run build
+
+      - name: Verificar conteúdo da build
+        run: ls -la ./build
 
       - name: Deploy via FTP para Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -26,4 +29,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build
-          server-dir: public_html/  # ajuste se seu domínio estiver em uma subpasta
+          server-dir: public_html/
